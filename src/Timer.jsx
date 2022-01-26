@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import './App.css';
-
+import './style.css';
+import fundo from './img/background.svg';
 function App() {
   const [time, setTime] = useState(20);
   const [check, setCheck] = useState(false)
@@ -39,12 +39,13 @@ function App() {
   }, [check, time]);
 
   return (
-    <>
-      <h1>hello world</h1>
+    <div className='container'>
+      <img src={fundo} alt=""/>
+      <h1>Pomodoro clock</h1>
       <h1>{time}</h1>
       <button onClick={swith}>{check ? 'pause' : 'start'}</button>
       <button onClick={reset}>reset</button>
-    </>
+    </div>
   );
 }
 
