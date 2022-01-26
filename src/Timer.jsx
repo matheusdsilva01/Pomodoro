@@ -35,7 +35,7 @@ function App() {
       setTime(time - 1);
     }, 1000);
     if (time === 0) {
-      if (window.Notification) {
+      if (window.Notification && Notification.permission !== "denied") {
         setTime(20);
         setCheck(false);
         clearTimeout(myInterval)
