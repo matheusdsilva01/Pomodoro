@@ -35,7 +35,7 @@ function App() {
       setTime(time - 1);
     }, 1000);
     if (time === 0) {
-      if (window.Notification && Notification.permission !== "denied") {
+      if (Notification.permission !== "denied" && Notification.permission !== "default") {
         setTime(20);
         setCheck(false);
         clearTimeout(myInterval)
@@ -43,7 +43,7 @@ function App() {
       }
       Swal.fire({
         title: 'O tempo acabou!',
-        text: 'You have finished your task',
+        text: 'Você finalizou a tarefa',
         icon: 'success',
         confirmButtonText: 'OK',
         willOpen: () => {
@@ -56,13 +56,14 @@ function App() {
     }
     return () => clearTimeout(myInterval);
   }, [check, time]);
+
   return (
     <div className='container'>
       <div className='container-pomodoro'>
         <h1 id='title'>Pomodoro clock</h1>
         <h1>{time}</h1>
         <div className='comands'>
-          <button onClick={swith}>{check ? 'pause' : 'start'}</button>
+          <button onClick={swith} className={check ? 'pause' : 'start '}>{check ? 'PAUSE' : 'START '}</button>
           <button onClick={reset}>reset</button>
         </div>
       </div>

@@ -30,7 +30,7 @@ div.comands{
     justify-content: space-around;
     width: 100%;
 }
-.container-pomodoro div.comands button{
+div.comands button{
     height: 50px;
     width: 100px;
     border: none;
@@ -41,3 +41,9 @@ div.comands{
     font-weight: lighter;
     cursor: pointer;
 }
+/* div.comands :nth-child(1).start::after{
+    content: url('./img/play.svg');
+}
+div.comands :nth-child(2).stop::after{
+    content: url('./img/stop.svg');
+} */
