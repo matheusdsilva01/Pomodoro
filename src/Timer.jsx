@@ -1,16 +1,28 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import './style.css';
-import fundo from './img/background.svg';
+
+/* Create function resetTime and setTimeOut global,
+  icon from buttons 'play', 'pause' and 'reset'
+   */
+
 function App() {
+
   const [time, setTime] = useState(20);
   const [check, setCheck] = useState(false)
+
+  function notification() {
+    new Notification('Time is up!', {
+      icon: './img/clock.png',
+      body: "You have finished your task",
+    });
+  }
 
   const swith = () => {
     setCheck(!check)
   }
   const reset = () => {
-    setTime(0)
+    setTime(20)
     setCheck(false)
   }
 
@@ -23,8 +35,14 @@ function App() {
       setTime(time - 1);
     }, 1000);
     if (time === 0) {
+      if (window.Notification) {
+        setTime(20);
+        setCheck(false);
+        clearTimeout(myInterval)
+        return notification()
+      }
       Swal.fire({
-        title: 'Time is up!',
+        title: 'O tempo acabou!',
         text: 'You have finished your task',
         icon: 'success',
         confirmButtonText: 'OK',
@@ -33,18 +51,21 @@ function App() {
           setCheck(false);
           clearTimeout(myInterval);
         }
-        })
+      })
+
     }
     return () => clearTimeout(myInterval);
   }, [check, time]);
-
   return (
     <div className='container'>
-      <img src={fundo} alt=""/>
-      <h1>Pomodoro clock</h1>
-      <h1>{time}</h1>
-      <button onClick={swith}>{check ? 'pause' : 'start'}</button>
-      <button onClick={reset}>reset</button>
+      <div className='container-pomodoro'>
+        <h1 id='title'>Pomodoro clock</h1>
+        <h1>{time}</h1>
+        <div className='comands'>
+          <button onClick={swith}>{check ? 'pause' : 'start'}</button>
+          <button onClick={reset}>reset</button>
+        </div>
+      </div>
     </div>
   );
 }
