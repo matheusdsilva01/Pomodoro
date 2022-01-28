@@ -19,11 +19,10 @@ body{
 .container-pomodoro h1{
     font-weight: lighter;
     display: flex;
+    align-items: center;
 }
 .container-pomodoro h1#title::after{
     content: url('./img/clock.svg');
-    width: 32px;
-    height: 32px;
 }
 div.comands{
     display: flex;
@@ -35,15 +34,13 @@ div.comands button{
     width: 100px;
     border: none;
     border-radius: 5px;
-    background-color: #3248b4;
+    background: linear-gradient(to top, #3248b4, #1f2f83);
     color: #fff;
-    font-size: 20px;
+    font-size: 1.2em;
     font-weight: lighter;
     cursor: pointer;
+    animation: all 0.3s ease-in-out;
 }
-/* div.comands :nth-child(1).start::after{
-    content: url('./img/play.svg');
+div.comands button:active{
+    background: linear-gradient(to top, #1f2f83, #3248b4);
 }
-div.comands :nth-child(2).stop::after{
-    content: url('./img/stop.svg');
-} */

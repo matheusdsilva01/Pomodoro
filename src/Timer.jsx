@@ -2,27 +2,28 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import './style.css';
 
-/* Create function resetTime and setTimeOut global,
-  icon from buttons 'play', 'pause' and 'reset'
-   */
+/* Create function resetminutes and setminutesOut global, icon from buttons 'play', 'pause' and 'reset' */
 
 function App() {
 
-  const [time, setTime] = useState(20);
-  const [check, setCheck] = useState(false)
+  const [minutes, setMinutes] = useState(25);
+  const [seconds, setSeconds] = useState(0);
+  const [check, setCheck] = useState(false);
+
 
   function notification() {
     new Notification('Time is up!', {
-      icon: './img/clock.png',
+      icon: './img/clock.svg',
       body: "You have finished your task",
     });
   }
 
-  const swith = () => {
+  const verifyCheck = () => {
     setCheck(!check)
   }
   const reset = () => {
-    setTime(20)
+    setMinutes(25)
+    setSeconds(0)
     setCheck(false)
   }
 
@@ -32,11 +33,17 @@ function App() {
       return
     }
     const myInterval = setTimeout(() => {
-      setTime(time - 1);
+      setSeconds(seconds - 1);
+      if (seconds === 0) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
+      }
     }, 1000);
-    if (time === 0) {
+
+    if (minutes === 0) {
       if (Notification.permission !== "denied" && Notification.permission !== "default") {
-        setTime(20);
+        setMinutes(25);
+        setSeconds(0);
         setCheck(false);
         clearTimeout(myInterval)
         return notification()
@@ -47,7 +54,8 @@ function App() {
         icon: 'success',
         confirmButtonText: 'OK',
         willOpen: () => {
-          setTime(20);
+          setMinutes(25);
+          setSeconds(0);
           setCheck(false);
           clearTimeout(myInterval);
         }
@@ -55,16 +63,21 @@ function App() {
 
     }
     return () => clearTimeout(myInterval);
-  }, [check, time]);
+  }, [check, minutes, seconds]);
+  
+
+
+
+
 
   return (
     <div className='container'>
       <div className='container-pomodoro'>
         <h1 id='title'>Pomodoro clock</h1>
-        <h1>{time}</h1>
+        <h1>{minutes.toString().length === 1 ? '0'+ minutes : minutes}:{seconds.toString().length === 1 ? '0'+seconds : seconds}</h1>
         <div className='comands'>
-          <button onClick={swith} className={check ? 'pause' : 'start '}>{check ? 'PAUSE' : 'START '}</button>
-          <button onClick={reset}>reset</button>
+          <button onClick={verifyCheck} >{check ? 'PAUSE' : 'START '}</button>
+          <button onClick={reset} id="reset" >RESET</button>
         </div>
       </div>
     </div>
