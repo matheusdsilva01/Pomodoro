@@ -40,7 +40,7 @@ function App() {
       }
     }, 1000);
 
-    if (minutes === 0) {
+    if (minutes === 0 && seconds === 0) {
       if (Notification.permission !== "denied" && Notification.permission !== "default") {
         setMinutes(25);
         setSeconds(0);
