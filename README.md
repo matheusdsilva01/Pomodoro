@@ -7,6 +7,7 @@ Para visualizar o site acesse https://pomodor.vercel.app/
 ## Projeto desenvolvido utilizando as seguintes tecnologias
   - ReactJs
   - Css
+  - Sweetalert2
 
 ## - [Back end da aplicação](https://github.com/matheusdsilva01/biblioteca-DevChallenge) 
 
