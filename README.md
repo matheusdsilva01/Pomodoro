@@ -9,8 +9,6 @@ Para visualizar o site acesse https://pomodor.vercel.app/
   - Css
   - Sweetalert2
 
-## - [Back end da aplicação](https://github.com/matheusdsilva01/biblioteca-DevChallenge) 
-
 # Este projeto foi inicializado com [Create React App](https://github.com/facebook/create-react-app).
 
 ## Scripts Disponíveis
