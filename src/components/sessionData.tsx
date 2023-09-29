@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Swal from "sweetalert2";
-
 import Badge from "./Badge";
-import FocusBadge from "./badges/focusBadge";
-import PauseHighBadge from "./badges/pauseHighBadge";
-import PauseLowBadge from "./badges/pauseLowBadge";
 import Sucess from "./success";
 
 import ClockIcon from "/assets/icons/controls/ClockClockwise.svg";
@@ -34,7 +29,7 @@ const times = {
 const SessionData = () => {
   const [currenctMode, setCurrentMode] = useState(0);
   const [seconds, setSeconds] = useState(times.focus);
-  const [check, setCheck] = useState(true);
+  const [check, setCheck] = useState(false);
   const finishedCycle = currenctMode === 7 && seconds === 0;
 
   const handleCheck = () => {
